@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="row">
+        <hr>
+        <div class="col-md-4">
+
+            <img src="{{ product.image.url }}" style="width: 100%; height: 250px">
+
+        </div>
+        <div class="col-md-8">
+            <h3 class="text-center">{{ product.title }}</h3>
+            <p>{{ product.description }}</p>
+            <hr>
+            <p>Price: <strong>{{ product.price }}$</strong></p>
+            {% if product.available %}
+                <a href="#" class="add_to_cart" data-slug="{{ product.slug }}">
+                    <button class='btn btn-danger'>Add to cart</button>
+                </a>
+            {% else %}
+                <button type="button" class="btn btn-primary btn-md" data-toggle="modal"
+                        data-target="#myModal-{{ item.id }}">
+                    Notify me
+                </button>
+                {#                <a href="{% url '' %}" class="add_to_cart" data-slug="{{ product.slug }}">#}
+                {#                <button class='btn btn-outline-dark'>Notify me when product will be available</button>#}
+                {#            </a>#}
+            {% endif %}
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.add_to_cart').on('click', function (e) {
+                e.preventDefault()
+                product_slug = $(this).attr('data-slug')
+                data = {
+                    product_slug: product_slug
+                }
+                $.ajax({
+                    type: 'GET',
+                    url: '{% url "add_to_cart" %}',
+                    data: data,
+                    success: function (data) {
+                        $('#cart_count').html(data.cart_total)
+                    }
+                })
+
+            })
+
+        })
+    </script>
+
+    <div class="modal fade" id="myModal-{{ item.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+
+                </div>
+                <div class="modal-body">
+                    <h4 class="text-center">Subscribe</h4>
+                    <form action="{% url 'notify' %}" method="post">
+
+                        <p class="text-info">Your email:</p>
+                        <br>
+                        {% csrf_token %}
+                        <input class="email" type="text" name="email">
+                        <input type='submit' class='submit btn btn-success btn-block' data-slug="{{ product.slug }}"
+                               value='Ok'>
+                        <br>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('.submit').on('click', function (e) {
+                e.preventDefault()
+                product_slug = $(this).attr('data-slug')
+                email = $('.email').val()
+                data = {
+                    product_slug: product_slug,
+                    email: email
+                }
+                $.ajax({
+                    type: 'GET',
+                    url: '{% url "notify" %}',
+                    data: data,
+                    success: function (response) {
+                        if (response) {
+                            window.location = "http://127.0.0.1:8000/";
+                        }
+                    }
+                })
+
+            })
+
+        })
+    </script>
+{% endblock content %}
