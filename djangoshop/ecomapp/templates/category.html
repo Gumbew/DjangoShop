@@ -1,16 +1,102 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div class="col-sm-12">
-    <h2>{{ category.name }}</h2>
-    <hr>
-        {% for product in products_of_category %}
-   <div class="col-sm-4">
-   <img src="{{ product.image.url }}" style="height: 250px; width: 100%">
-   <h4 class="text-center">{{ product.title }}</h4>
-   <p class="text-center">Price: <strong>{{ product.price }}</strong></p>
-   <p class="text-center"><a href="#"><button class="btn btn-danger">Add to cart</button></a> </p>
-   </div>
-    {% endfor %}
+{#    <div class="col-sm-12">#}
+{#    <h2>{{ category.name }}</h2>#}
+{#    <hr>#}
+{#        {% for product in products_of_category %}#}
+{#   <div class="col-sm-4">#}
+{#   <img src="{{ product.image.url }}" style="height: 250px; width: 100%">#}
+{#   <h4 class="text-center">{{ product.title }}</h4>#}
+{#   <p class="text-center">Price: <strong>{{ product.price }}</strong></p>#}
+{#   <p class="text-center"><a href="#"><button class="btn btn-danger">Add to cart</button></a> </p>#}
+{#   </div>#}
+{#    {% endfor %}#}
+{#    </div>#}
+     <div class="row" >
+
+
+    <div class="col-lg-2">
+        <p class="lead">Categories</p>
+        <div class="list-group">
+            {% for category in categories %}
+                <a href="{{ category.get_absolute_url }}" class="list-group-item text-center">{{ category.name }}</a>
+            {% endfor %}
+        </div>
     </div>
+    <div class="container col-lg-10" style="height: 830px; margin: 0px; position: relative">
+
+    <div class="row" style="margin-left: 25px; height: 96%">
+
+
+        <div class="col-lg-10">
+            <br>
+            <div class="row">
+                {% for product in products_of_category %}
+                    <div class="col-lg-4 col-lg-4 col-lg-4">
+                        <div class="card h-100">
+                            <a href="{{ product.get_absolute_url }}"><img class="card-img-top"
+                                                                          src="{{ product.image.url }}" alt=""
+                                                                          ></a>
+                            <div class="card-body">
+                                <h4 class="card-link">
+                                    <a href="{{ product.get_absolute_url }}"> {{ product.title }}</a>
+                                </h4>
+                                <h5 class="card-group">{{ product.price }} $</h5>
+                                <!-- <p class="card-text">{{ product.description }}</p>-->
+                            </div>
+
+                            <div class="card-footer">
+
+                                {% if product.available %}
+                                    <a href="#" class="add_to_cart" data-slug="{{ product.slug }}">
+                                        <button class='btn btn-danger'>Add to cart</button>
+                                    </a>
+                                {% else %}
+                                    <button type="button" class="btn btn-primary btn-md" data-toggle="modal"
+                                            data-target="#myModal-{{ item.id }}">
+                                        Notify me
+                                    </button>
+
+                                {% endif %}
+
+
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+
+    </div>
+
+<div class="col-4 mx-auto" id="pg">
+    <div class="pagination ">
+        {% if products.has_previous %}
+
+            <li class="page-item"><a class="page-link" href="?page=1"><<</a></li>
+            <li class="page-item"><a class="page-link"
+                                     href="?page={{ products.previous_page_number }}"><</a></li>
+
+        {% endif %}
+        {% for num in products.paginator.page_range %}
+            {% if products.number == num %}
+                <li class="page-item"><a class="page-link" href="?page={{ num }}"><strong>{{ num }}</strong></a>
+                </li>
+            {% elif num > products.number|add:'-3' and num < products.number|add:'3' %}
+                <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+            {% endif %}
+        {% endfor %}
+        {% if products.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ products.next_page_number }}">></a>
+            </li>
+            <li class="page-item"><a class="page-link" href="?page={{ products.paginator.num_pages }}">>></a>
+            </li>
+        {% endif %}
+
+    </div>
+</div>
+</div>
+</div>
 
 {% endblock content %}

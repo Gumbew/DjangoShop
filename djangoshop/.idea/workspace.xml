@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5035721a-c46d-4b6a-a4f9-9b18dd586403" name="Default Changelist" comment="" />
+    <list default="true" id="5035721a-c46d-4b6a-a4f9-9b18dd586403" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecomapp/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecomapp/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecomapp/templates/category.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecomapp/templates/category.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecomapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/ecomapp/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static_in_dev/css/shop-homepage.css" beforeDir="false" afterPath="$PROJECT_DIR$/static_in_dev/css/shop-homepage.css" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,42 +80,67 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="-604419789">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.open.time.14" value="1" />
+          <entry key="project.opened" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="css" value="153" />
+          <entry key="html" value="950" />
+          <entry key="py" value="100" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="CSS" value="153" />
+          <entry key="HTML" value="950" />
+          <entry key="Python" value="100" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="css" value="1" />
+          <entry key="html" value="1" />
+          <entry key="py" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="CSS" value="1" />
+          <entry key="HTML" value="1" />
+          <entry key="Python" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ecomapp/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1320">
-              <caret line="74" column="32" selection-start-line="74" selection-start-column="32" selection-end-line="74" selection-end-column="32" />
+            <state relative-caret-position="250">
+              <caret line="30" column="23" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
-                <marker date="1553603836393" expanded="true" signature="2483:2484" ph="..." />
-                <marker date="1553603836393" expanded="true" signature="7570:7571" ph="..." />
-                <marker date="1553603836393" expanded="true" signature="9469:9474" ph="..." />
+                <marker date="1553693152417" expanded="true" signature="2821:2822" ph="..." />
+                <marker date="1553693152417" expanded="true" signature="7908:7909" ph="..." />
+                <marker date="1553693152417" expanded="true" signature="9807:9812" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ecomapp/forms.py">
+        <entry file="file://$PROJECT_DIR$/ecomapp/templates/category.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1620">
-              <caret line="83" selection-start-line="83" selection-end-line="83" />
-              <folding>
-                <element signature="e#0#24#0" expanded="true" />
-                <marker date="1553376092884" expanded="true" signature="872:875" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ecomapp/templates/thank_you.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="3" column="130" selection-start-line="3" selection-start-column="130" selection-end-line="3" selection-end-column="130" />
+            <state relative-caret-position="390">
+              <caret line="28" column="35" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -128,8 +160,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ecomapp/templates/product.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1920">
-              <caret line="96" column="39" selection-start-line="96" selection-start-column="39" selection-end-line="96" selection-end-column="39" />
+            <state relative-caret-position="1020">
+              <caret line="51" column="13" selection-start-line="30" selection-start-column="4" selection-end-line="51" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -137,12 +169,23 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ecomapp/templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="44" column="30" lean-forward="true" selection-start-line="44" selection-start-column="30" selection-end-line="44" selection-end-column="30" />
+            <state relative-caret-position="410">
+              <caret line="183" column="22" selection-start-line="183" selection-start-column="22" selection-end-line="183" selection-end-column="22" />
               <folding>
-                <element signature="n#style#0;n#ul#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#ul#1;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static_in_dev/css/shop-homepage.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="250">
+              <caret line="34" column="23" selection-start-line="34" selection-start-column="23" selection-end-line="34" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -198,10 +241,12 @@
       <find>sta</find>
     </findStrings>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/ecomapp/templates/category.html" />
         <option value="$PROJECT_DIR$/djangoshop/urls.py" />
         <option value="$PROJECT_DIR$/ecomapp/templates/cart.html" />
         <option value="$PROJECT_DIR$/ecomapp/templates/checkout.html" />
@@ -217,7 +262,9 @@
         <option value="$PROJECT_DIR$/ecomapp/forms.py" />
         <option value="$PROJECT_DIR$/ecomapp/urls.py" />
         <option value="$PROJECT_DIR$/ecomapp/templates/product.html" />
+        <option value="$PROJECT_DIR$/ecomapp/templates/category.html" />
         <option value="$PROJECT_DIR$/ecomapp/views.py" />
+        <option value="$PROJECT_DIR$/static_in_dev/css/shop-homepage.css" />
         <option value="$PROJECT_DIR$/ecomapp/templates/base.html" />
       </list>
     </option>
@@ -229,8 +276,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="252" />
-    <option name="y" value="16" />
+    <option name="x" value="627" />
+    <option name="y" value="59" />
     <option name="width" value="1400" />
     <option name="height" value="1000" />
   </component>
@@ -248,11 +295,13 @@
       </profile-state>
     </entry>
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -279,17 +328,6 @@
             <path>
               <item name="djangoshop" type="b2602c69:ProjectViewProjectNode" />
               <item name="djangoshop" type="462c0819:PsiDirectoryNode" />
-              <item name="media" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="djangoshop" type="b2602c69:ProjectViewProjectNode" />
-              <item name="djangoshop" type="462c0819:PsiDirectoryNode" />
-              <item name="media" type="462c0819:PsiDirectoryNode" />
-              <item name="audi_r8" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="djangoshop" type="b2602c69:ProjectViewProjectNode" />
-              <item name="djangoshop" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -309,17 +347,22 @@
               <item name="djangoshop" type="462c0819:PsiDirectoryNode" />
               <item name="static_in_dev" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="djangoshop" type="b2602c69:ProjectViewProjectNode" />
+              <item name="djangoshop" type="462c0819:PsiDirectoryNode" />
+              <item name="static_in_dev" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../ecom-django/djangoshop" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
@@ -398,20 +441,20 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28624734" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.29264393" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.329718" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49840087" visible="true" weight="0.329718" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4989339" weight="0.36442515" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4989339" weight="0.329718" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5010661" side_tool="true" weight="0.8373102" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50159913" side_tool="true" visible="true" weight="0.329718" />
       <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4989339" weight="0.329718" />
       <window_info anchor="bottom" id="Python Console" order="12" sideWeight="0.49946696" weight="0.329718" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -458,16 +501,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ecomapp/templates/category.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="10" column="57" selection-start-line="10" selection-start-column="57" selection-end-line="10" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static_in_dev/css/shop-homepage.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/django/utils/deprecation.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="389">
@@ -614,19 +647,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ecomapp/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1320">
-          <caret line="74" column="32" selection-start-line="74" selection-start-column="32" selection-end-line="74" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-            <marker date="1553603836393" expanded="true" signature="2483:2484" ph="..." />
-            <marker date="1553603836393" expanded="true" signature="7570:7571" ph="..." />
-            <marker date="1553603836393" expanded="true" signature="9469:9474" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ecomapp/forms.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1620">
@@ -657,8 +677,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ecomapp/templates/product.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1920">
-          <caret line="96" column="39" selection-start-line="96" selection-start-column="39" selection-end-line="96" selection-end-column="39" />
+        <state relative-caret-position="1020">
+          <caret line="51" column="13" selection-start-line="30" selection-start-column="4" selection-end-line="51" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -690,13 +710,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ecomapp/templates/category.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="28" column="35" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ecomapp/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="30" column="23" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+            <marker date="1553693152417" expanded="true" signature="2821:2822" ph="..." />
+            <marker date="1553693152417" expanded="true" signature="7908:7909" ph="..." />
+            <marker date="1553693152417" expanded="true" signature="9807:9812" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static_in_dev/css/shop-homepage.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="34" column="23" selection-start-line="34" selection-start-column="23" selection-end-line="34" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ecomapp/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="44" column="30" lean-forward="true" selection-start-line="44" selection-start-column="30" selection-end-line="44" selection-end-column="30" />
+        <state relative-caret-position="410">
+          <caret line="183" column="22" selection-start-line="183" selection-start-column="22" selection-end-line="183" selection-end-column="22" />
           <folding>
-            <element signature="n#style#0;n#ul#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#ul#1;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

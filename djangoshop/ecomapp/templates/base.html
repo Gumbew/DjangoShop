@@ -22,126 +22,256 @@
 <body>
 
 <!-- Navigation -->
-{#<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">#}
-<nav class="navbar navbar-expand-md bg-light navbar-light fixed-top " id="navbar" style="height: 5%">
-    <div class="container">
-        <a class="navbar-brand" href="http://127.0.0.1:8000/">Django Shop</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="nav navbar-nav navbar-right ">
-                {% if not request.get_full_path == '/' %}
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Categories
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            {% for category in categories %}
-                                <a class="dropdown-item" href="{{ category.get_absolute_url }}">{{ category.name }}</a>
-                            {% endfor %}
-                        </div>
-                    </li>
-                {% endif %}
-                {% if not request.user.is_authenticated %}
-                    <li>
-                        <p class='navbar-text'>Здравствуйте, гость!</p>
-                    </li>
-                    <li>
-                        <a href="{% url 'registration' %}">Register</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'login' %}">Log in</a>
-                    </li>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="menu" style="height: 6%">
+    <a class="navbar-brand" href="/">Django Shop</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-                {% else %}
-                    <li>
-                        <p class='navbar-text'>Здравствуйте, {{ request.user }} </p>
-                    </li>
-                    <li>
-                        <a href="{% url 'account' %}">Profile</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'logout' %}">Log out</a>
-                    </li>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            {#            <li class="nav-item">#}
+            {#                <a class="nav-link" href="#">Link</a>#}
+            {#            </li>#}
+            {% if not request.get_full_path == '/' %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Categories
+                    </a>
+                    <div class="dropdown-menu " aria-labelledby="navbarDropdown">
+                        {% for category in categories %}
+                            <a class="dropdown-item " href="{{ category.get_absolute_url }}">{{ category.name }}</a>
+                        {% endfor %}
+                    </div>
+                </li>
+            {% endif %}
+        </ul>
+        <ul class="nav navbar-nav navbar-right" style="padding-top: 13px">
+            {% if not request.user.is_authenticated %}
+                <li class="nav-item">
+                    <p class='navbar-text'>Hello, guest!</p>
+                </li>
+                <li class='nav-item'>
+                    <a class="nav-link active" href="{% url 'registration' %}">Register</a>
+                </li>
+                <li class='nav-item'>
+                    <a class="nav-link" href="{% url 'login' %}">Log in</a>
+                </li>
 
-                {% endif %}
+            {% else %}
+                <li class='nav-item'>
+                    <p class='navbar-text'>Hello, {{ request.user }} </p>
+                </li>
+                <li class='nav-item'>
+                    <a class="nav-link active" href="{% url 'account' %}">Profile</a>
+                </li>
+                <li class='nav-item text-center'>
 
+                    <a class="nav-link active" href="{% url 'logout' %}">Log out</a>
+                </li>
 
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a class="nav-link" href='{% url "cart" %}'>Cart <span class='badge'
-                                                                           id='cart_count'>{% if not request.session.total %}
-                    0 {% else %} {{ request.session.total }} {% endif %}</span></a></li>
-            </ul>
+            {% endif %}
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
 
-        </div>
+            <li class="nav-item">
+                <a href="{% url "cart" %}" class="nav-link btn btn-info btn-sm text-center">
+                    <span class="glyphicon glyphicon-shopping-cart text-center"></span> Shopping Cart
+                    <span class='badge color nav-item'
+                          id='cart_count'>{% if not request.session.total %}
+                        0 {% else %} {{ request.session.total }} {% endif %}</span>
+                </a>
+            </li>
+        </ul>
+
     </div>
 </nav>
 
 <!-- Page Content -->
-<div id="page-content-wrapper">
-    <div class="context ">
-        {% block content %}
+{% block content %}
+    <div class="row" >
 
+
+    <div class="col-lg-2">
+        <p class="lead">Categories</p>
+        <div class="list-group">
+            {% for category in categories %}
+                <a href="{{ category.get_absolute_url }}" class="list-group-item text-center">{{ category.name }}</a>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="container col-lg-10" style="height: 830px; margin: 0px; position: relative">
+
+    <div class="row" style="margin-left: 25px; height: 96%">
+
+
+        <div class="col-lg-10">
+            <br>
             <div class="row">
+                {% for product in products %}
+                    <div class="col-lg-4 col-lg-4 col-lg-4">
+                        <div class="card h-100">
+                            <a href="{{ product.get_absolute_url }}"><img class="card-img-top"
+                                                                          src="{{ product.image.url }}" alt=""
+                                                                          ></a>
+                            <div class="card-body">
+                                <h4 class="card-link">
+                                    <a href="{{ product.get_absolute_url }}"> {{ product.title }}</a>
+                                </h4>
+                                <h5 class="card-group">{{ product.price }} $</h5>
+                                <!-- <p class="card-text">{{ product.description }}</p>-->
+                            </div>
+
+                            <div class="card-footer">
+
+                                {% if product.available %}
+                                    <a href="#" class="add_to_cart" data-slug="{{ product.slug }}">
+                                        <button class='btn btn-danger'>Add to cart</button>
+                                    </a>
+                                {% else %}
+                                    <button type="button" class="btn btn-primary btn-md" data-toggle="modal"
+                                            data-target="#myModal-{{ item.id }}">
+                                        Notify me
+                                    </button>
+
+                                {% endif %}
 
 
-                <ul class="nav flex-column" style="margin-left: 1%">
-                    <h2 class="my-2">Categories</h2>
-                    <div class="list-group">
-                        {% for category in categories %}
-                            <a href="{{ category.get_absolute_url }}" class="list-group-item">{{ category.name }}</a>
-                        {% endfor %}
-                    </div>
-                </ul>
-                <!-- /.col-lg-3 -->
-
-
-                <div class="row">
-                    {% for product in products %}
-                        <div class="col-lg-3 col-md-5 mb-3">
-                            <div class="card h-100">
-                                <a href="{{ product.get_absolute_url }}"><img class="card-img-top"
-                                                                              src="{{ product.image.url }}" alt=""
-                                                                              style="height: 200px"></a>
-                                <div class="card-body">
-                                    <h4 class="card-title">
-                                        <a href="{{ product.get_absolute_url }}"> {{ product.title }}</a>
-                                    </h4>
-                                    <h5>{{ product.price }} $</h5>
-                                    <!-- <p class="card-text">{{ product.description }}</p>-->
-                                </div>
-                                <div class="card-footer">
-
-                                    {% if product.available %}
-                                        <small style="color: green">In stock</small>
-                                    {% else %}
-                                        <small style="color: red">Out of stock</small>
-                                    {% endif %}
-
-
-                                </div>
                             </div>
                         </div>
-                    {% endfor %}
-                </div>
-                <!-- /.row -->
-
+                    </div>
+                {% endfor %}
             </div>
-            <!-- /.col-lg-9 -->
-        {% endblock content %}
+
+        </div>
+
+    </div>
+
+<div class="col-4 mx-auto" id="pg">
+    <div class="pagination ">
+        {% if products.has_previous %}
+
+            <li class="page-item"><a class="page-link" href="?page=1"><<</a></li>
+            <li class="page-item"><a class="page-link"
+                                     href="?page={{ products.previous_page_number }}"><</a></li>
+
+        {% endif %}
+        {% for num in products.paginator.page_range %}
+            {% if products.number == num %}
+                <li class="page-item"><a class="page-link" href="?page={{ num }}"><strong>{{ num }}</strong></a>
+                </li>
+            {% elif num > products.number|add:'-3' and num < products.number|add:'3' %}
+                <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+            {% endif %}
+        {% endfor %}
+        {% if products.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ products.next_page_number }}">></a>
+            </li>
+            <li class="page-item"><a class="page-link" href="?page={{ products.paginator.num_pages }}">>></a>
+            </li>
+        {% endif %}
+
     </div>
 </div>
+</div>
+</div>
+{% endblock content %}
+
+{#         {% block content %}#}
+{#<div class="container">#}
+{#    <h3>A demo of Bootstrap Card</h3>#}
+{#    <div class="row">#}
+{#        {% for product in products %}#}
+{#            <div class="col-sm-2">#}
+{#<div class="card">#}
+{#    <a href="{{ product.get_absolute_url }}"><img class="card-img-top"#}
+{#                                                  src="{{ product.image.url }}" alt=""#}
+{#    ></a>#}
+{#    <div class="card-body">#}
+{#        <h4 class="card-link">#}
+{#            <a href="{{ product.get_absolute_url }}"> {{ product.title }}</a>#}
+{#        </h4>#}
+{#        <h5 class="card-group">{{ product.price }} $</h5>#}
+{#        <!-- <p class="card-text">{{ product.description }}</p>-->#}
+{#    </div>#}
+{##}
+{#    <div class="card-footer">#}
+{##}
+{#        {% if product.available %}#}
+{#            <small style="color: green">In stock</small>#}
+{#        {% else %}#}
+{#            <small style="color: red">Out of stock</small>#}
+{#        {% endif %}#}
+{##}
+{##}
+{#    </div>#}
+{#</div>#}
+{#        {% endfor %}#}
+{#        </div>#}
+
+
+{#            <div class="row">#}
+{##}
+{##}
+{##}
+{#                <!-- /.col-lg-3 -->#}
+{##}
+{##}
+{#                <div class="row">#}
+{#                    {% for product in products %}#}
+{#                        <div class="col-md-3 col-md-3 ">#}
+{#                            <div class="card h-100">#}
+{#                                            <a href="{{ product.get_absolute_url }}"><img class="card-img-top"#}
+{#                                                                                          src="{{ product.image.url }}" alt=""#}
+{#                                                                                          style="height: 200px"></a>#}
+{#                                            <div class="card-body">#}
+{#                                                <h4 class="card-link">#}
+{#                                                    <a href="{{ product.get_absolute_url }}"> {{ product.title }}</a>#}
+{#                                                </h4>#}
+{#                                                <h5 class="card-group">{{ product.price }} $</h5>#}
+{#                                                <!-- <p class="card-text">{{ product.description }}</p>-->#}
+{#                                            </div>#}
+{##}
+{#                                            <div class="card-footer">#}
+{##}
+{#                                                {% if product.available %}#}
+{#                                                    <small style="color: green">In stock</small>#}
+{#                                                {% else %}#}
+{#                                                    <small style="color: red">Out of stock</small>#}
+{#                                                {% endif %}#}
+{##}
+{##}
+{#                                            </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    {% endfor %}#}
+{#                </div>#}
+{#                <!-- /.row -->#}
+{##}
+{#            </div>#}
+{#            <div class="py-5">#}
+{#            <div class="container">#}
+{##}
+
+{#            <!-- /.col-lg-9 -->#}
+{#                {% endblock content %}#}
+{#        </div>#}
+{#        </div>#}
 
 
 <!-- /.row -->
 <!-- /.container -->
 
+
 <!-- Footer -->
 <footer class="py-2 bg-dark fixed-bottom">
+
     <div class="container">
         <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
     </div>
@@ -153,6 +283,27 @@
 
 <script src='{% static "js/bootstrap.min.js" %}'></script>
 
+<script>
+    $(document).ready(function () {
+        $('.add_to_cart').on('click', function (e) {
+            e.preventDefault()
+            product_slug = $(this).attr('data-slug')
+            data = {
+                product_slug: product_slug
+            }
+            $.ajax({
+                type: 'GET',
+                url: '{% url "add_to_cart" %}',
+                data: data,
+                success: function (data) {
+                    $('#cart_count').html(data.cart_total)
+                }
+            })
+
+        })
+
+    })
+</script>
 </body>
 
 </html>
