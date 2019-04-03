@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h3 class="text-center">Profile {{ request.user }}</h3>
+    <h3 class="text-center">Profile, {{ request.user }}</h3>
     <hr>
     <h4 class="text-center">Your orders</h4>
     <table class='table'>
@@ -34,9 +34,10 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
+
+                        <h4 class="modal-title" id="myModalLabel">Order № {{ item.id }}</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Order № {{ item.id }}</h4>
                     </div>
                     <div class="modal-body">
                         <h3>Item</h3>

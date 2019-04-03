@@ -71,7 +71,7 @@
                                value='Ok'>
                         <br>
                     </form>
-
+                    <br>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -83,6 +83,7 @@
         $(document).ready(function () {
             $('.submit').on('click', function (e) {
                 e.preventDefault()
+
                 product_slug = $(this).attr('data-slug')
                 email = $('.email').val()
                 data = {

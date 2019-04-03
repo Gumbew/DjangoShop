@@ -32,11 +32,8 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
             </li>
-            {#            <li class="nav-item">#}
-            {#                <a class="nav-link" href="#">Link</a>#}
-            {#            </li>#}
             {% if not request.get_full_path == '/' %}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -92,189 +89,144 @@
 
     </div>
 </nav>
+<br>
 
 <!-- Page Content -->
 {% block content %}
-    <div class="row" >
+    <div class="row">
 
 
-    <div class="col-lg-2">
-        <p class="lead">Categories</p>
-        <div class="list-group">
-            {% for category in categories %}
-                <a href="{{ category.get_absolute_url }}" class="list-group-item text-center">{{ category.name }}</a>
-            {% endfor %}
+        <div class="col-lg-2">
+            <div id="sidebar">
+                <p class="text-center"><strong>Categories</strong></p>
+                <div class="list-group">
+                    {% for category in categories %}
+                        <a href="{{ category.get_absolute_url }}"
+                           class="list-group-item text-center">{{ category.name }}</a>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="container col-lg-10" style="height: 830px; margin: 0px; position: relative">
+        <div class="container col-lg-10" style="height: 830px; margin: 0px; position: relative">
 
-    <div class="row" style="margin-left: 25px; height: 96%">
+            <div class="row" style="margin-left: 25px; height: 96%">
 
 
-        <div class="col-lg-10">
-            <br>
-            <div class="row">
-                {% for product in products %}
-                    <div class="col-lg-4 col-lg-4 col-lg-4">
-                        <div class="card h-100">
-                            <a href="{{ product.get_absolute_url }}"><img class="card-img-top"
-                                                                          src="{{ product.image.url }}" alt=""
-                                                                          ></a>
-                            <div class="card-body">
-                                <h4 class="card-link">
-                                    <a href="{{ product.get_absolute_url }}"> {{ product.title }}</a>
-                                </h4>
-                                <h5 class="card-group">{{ product.price }} $</h5>
-                                <!-- <p class="card-text">{{ product.description }}</p>-->
+                <div class="col-lg-10">
+                    <br>
+                    <div class="row">
+                        {% for product in products %}
+                            <div class="col-lg-4 col-lg-4 col-lg-4">
+                                <div class="card h-100">
+                                    <a href="{{ product.get_absolute_url }}"><img class="card-img-top"
+                                                                                  src="{{ product.image.url }}" alt=""
+                                    ></a>
+                                    <div class="card-body text-center">
+                                        <h4 class="card-link">
+                                            <a href="{{ product.get_absolute_url }}"> {{ product.title }}</a>
+                                        </h4>
+                                        <h5 class="card-group bottom">{{ product.price }} $</h5>
+                                        <!-- <p class="card-text">{{ product.description }}</p>-->
+                                    </div>
+
+                                    <div class="card-footer">
+
+                                        {% if product.available %}
+                                            <a href="#" class="add_to_cart" data-slug="{{ product.slug }}">
+                                                <button class='btn btn-danger'>Add to cart</button>
+                                            </a>
+                                        {% else %}
+                                            {#                                            <button type="button" class="btn btn-primary btn-md" data-toggle="modal"#}
+                                            {#                                                    data-target="#myModal-{{ item.id }}" data-slug="{{ product.slug }}">#}
+                                            {#                                                Notify me#}
+                                            {#                                            </button>#}
+
+                                            {#                                                <button type="button" class="btn btn-primary btn-md" data-toggle="modal"#}
+                                            {#                                                        data-target="#myModal-{{ item.id }}">#}
+                                            {#                                                    Notify me#}
+                                            {#                                                </button>#}
+                                            <p class="text-center text-danger"><strong>Out of stock</strong></p>
+
+
+                                        {% endif %}
+
+
+                                    </div>
+                                </div>
                             </div>
-
-                            <div class="card-footer">
-
-                                {% if product.available %}
-                                    <a href="#" class="add_to_cart" data-slug="{{ product.slug }}">
-                                        <button class='btn btn-danger'>Add to cart</button>
-                                    </a>
-                                {% else %}
-                                    <button type="button" class="btn btn-primary btn-md" data-toggle="modal"
-                                            data-target="#myModal-{{ item.id }}">
-                                        Notify me
-                                    </button>
-
-                                {% endif %}
-
-
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
-                {% endfor %}
+
+                </div>
+
+            </div>
+
+            <!-- Paginator -->
+            <div class="col-4 mx-auto" id="pg">
+                <div class="pagination ">
+                    {% if products.has_previous %}
+
+                        <li class="page-item"><a class="page-link" href="?page=1"><<</a></li>
+                        <li class="page-item"><a class="page-link"
+                                                 href="?page={{ products.previous_page_number }}"><</a></li>
+
+                    {% endif %}
+                    {% for num in products.paginator.page_range %}
+                        {% if products.number == num %}
+                            <li class="page-item"><a class="page-link" href="?page={{ num }}"><strong>{{ num }}</strong></a>
+                            </li>
+                        {% elif num > products.number|add:'-3' and num < products.number|add:'3' %}
+                            <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if products.has_next %}
+                        <li class="page-item"><a class="page-link" href="?page={{ products.next_page_number }}">></a>
+                        </li>
+                        <li class="page-item"><a class="page-link"
+                                                 href="?page={{ products.paginator.num_pages }}">>></a>
+                        </li>
+                    {% endif %}
+
+                </div>
             </div>
 
         </div>
-
     </div>
-
-<div class="col-4 mx-auto" id="pg">
-    <div class="pagination ">
-        {% if products.has_previous %}
-
-            <li class="page-item"><a class="page-link" href="?page=1"><<</a></li>
-            <li class="page-item"><a class="page-link"
-                                     href="?page={{ products.previous_page_number }}"><</a></li>
-
-        {% endif %}
-        {% for num in products.paginator.page_range %}
-            {% if products.number == num %}
-                <li class="page-item"><a class="page-link" href="?page={{ num }}"><strong>{{ num }}</strong></a>
-                </li>
-            {% elif num > products.number|add:'-3' and num < products.number|add:'3' %}
-                <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
-            {% endif %}
-        {% endfor %}
-        {% if products.has_next %}
-            <li class="page-item"><a class="page-link" href="?page={{ products.next_page_number }}">></a>
-            </li>
-            <li class="page-item"><a class="page-link" href="?page={{ products.paginator.num_pages }}">>></a>
-            </li>
-        {% endif %}
-
-    </div>
-</div>
-</div>
-</div>
 {% endblock content %}
 
-{#         {% block content %}#}
-{#<div class="container">#}
-{#    <h3>A demo of Bootstrap Card</h3>#}
-{#    <div class="row">#}
-{#        {% for product in products %}#}
-{#            <div class="col-sm-2">#}
-{#<div class="card">#}
-{#    <a href="{{ product.get_absolute_url }}"><img class="card-img-top"#}
-{#                                                  src="{{ product.image.url }}" alt=""#}
-{#    ></a>#}
-{#    <div class="card-body">#}
-{#        <h4 class="card-link">#}
-{#            <a href="{{ product.get_absolute_url }}"> {{ product.title }}</a>#}
-{#        </h4>#}
-{#        <h5 class="card-group">{{ product.price }} $</h5>#}
-{#        <!-- <p class="card-text">{{ product.description }}</p>-->#}
-{#    </div>#}
-{##}
-{#    <div class="card-footer">#}
-{##}
-{#        {% if product.available %}#}
-{#            <small style="color: green">In stock</small>#}
-{#        {% else %}#}
-{#            <small style="color: red">Out of stock</small>#}
-{#        {% endif %}#}
-{##}
-{##}
-{#    </div>#}
-{#</div>#}
-{#        {% endfor %}#}
-{#        </div>#}
+<div class="modal fade" id="myModal-{{ item.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
 
+            </div>
+            <div class="modal-body">
+                <h4 class="text-center">Subscribe</h4>
+                <form action="{% url 'notify' %}" method="post">
 
-{#            <div class="row">#}
-{##}
-{##}
-{##}
-{#                <!-- /.col-lg-3 -->#}
-{##}
-{##}
-{#                <div class="row">#}
-{#                    {% for product in products %}#}
-{#                        <div class="col-md-3 col-md-3 ">#}
-{#                            <div class="card h-100">#}
-{#                                            <a href="{{ product.get_absolute_url }}"><img class="card-img-top"#}
-{#                                                                                          src="{{ product.image.url }}" alt=""#}
-{#                                                                                          style="height: 200px"></a>#}
-{#                                            <div class="card-body">#}
-{#                                                <h4 class="card-link">#}
-{#                                                    <a href="{{ product.get_absolute_url }}"> {{ product.title }}</a>#}
-{#                                                </h4>#}
-{#                                                <h5 class="card-group">{{ product.price }} $</h5>#}
-{#                                                <!-- <p class="card-text">{{ product.description }}</p>-->#}
-{#                                            </div>#}
-{##}
-{#                                            <div class="card-footer">#}
-{##}
-{#                                                {% if product.available %}#}
-{#                                                    <small style="color: green">In stock</small>#}
-{#                                                {% else %}#}
-{#                                                    <small style="color: red">Out of stock</small>#}
-{#                                                {% endif %}#}
-{##}
-{##}
-{#                                            </div>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    {% endfor %}#}
-{#                </div>#}
-{#                <!-- /.row -->#}
-{##}
-{#            </div>#}
-{#            <div class="py-5">#}
-{#            <div class="container">#}
-{##}
-
-{#            <!-- /.col-lg-9 -->#}
-{#                {% endblock content %}#}
-{#        </div>#}
-{#        </div>#}
-
-
-<!-- /.row -->
-<!-- /.container -->
-
-
+                    <p class="text-info">Your email:</p>
+                    <br>
+                    {% csrf_token %}
+                    <input class="email" type="text" name="email">
+                    <input type='submit' class='submit btn btn-success btn-block' item_id="{{ item.id }}"
+                           value='Ok'>
+                    <br>
+                </form>
+                <br>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Footer -->
 <footer class="py-2 bg-dark fixed-bottom">
 
-    <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
-    </div>
+    <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+
     <!-- /.container -->
 </footer>
 

@@ -1,11 +1,11 @@
 from django.contrib import admin
-from ecomapp.models import Category, Brand, Product, CartItem, Cart, Order, MiddlwareNotification,Cupon
 
+from ecomapp.models import Category, Brand, Product, CartItem, Cart, Order, MiddlwareNotification, Cupon
 
 # Register your models here.
 admin.site.register(Category)
 admin.site.register(Brand)
-#admin.site.register(Product)
+# admin.site.register(Product)
 admin.site.register(CartItem)
 admin.site.register(Cart)
 admin.site.register(Order)
@@ -19,7 +19,9 @@ def make_available(modeladmin, request, queryset):
 
     MiddlwareNotification.notify_all_subs()
 
+
 class ProductAdmin(admin.ModelAdmin):
-    actions = [make_available,]
+    actions = [make_available, ]
+
 
 admin.site.register(Product, ProductAdmin)

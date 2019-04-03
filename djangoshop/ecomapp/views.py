@@ -1,13 +1,14 @@
-from django.shortcuts import render
-from django.http import HttpResponseRedirect, JsonResponse
-from ecomapp.models import Category, Product, CartItem, Cart, MiddlwareNotification
-from django.urls import reverse
-from decimal import Decimal
-from ecomapp.forms import OrderForm, RegistrationForm, LoginForm
-from ecomapp.models import Order
-from django.contrib.auth import login, logout, authenticate
 from urllib.parse import unquote
+
+from django.contrib.auth import login, authenticate
 from django.core.paginator import Paginator
+from django.http import HttpResponseRedirect, JsonResponse
+from django.shortcuts import render
+from django.urls import reverse
+
+from ecomapp.forms import OrderForm, RegistrationForm, LoginForm
+from ecomapp.models import Category, Product, CartItem, Cart, MiddlwareNotification
+from ecomapp.models import Order
 
 
 # Create your views here.
@@ -27,13 +28,15 @@ def base_view(request):
     products = Product.objects.all()
     paginator = Paginator(products, 3)
     page = request.GET.get('page')
-    products_list =paginator.get_page(page)
+    products_list = paginator.get_page(page)
     print(products_list)
     context = {
         'categories': categories,
         'products': products_list,
         'cart': cart
     }
+    print("BASE VIEW")
+    print(request)
     return render(request, 'base.html', context)
 
 
@@ -55,6 +58,7 @@ def product_view(request, product_slug):
         'categories': categories,
         'cart': cart,
     }
+
     return render(request, 'product.html', context)
 
 
@@ -73,9 +77,9 @@ def category_view(request, category_slug):
     category = Category.objects.get(slug=category_slug)
     price_filter_type = request.GET.get('price_filter_type')
     products_of_category = Product.objects.filter(category=category)
-    #paginator = Paginator(products_of_category, 3)
-    #page = request.GET.get('page')
-    #products_of_category_list = paginator.get_page(page)
+    # paginator = Paginator(products_of_category, 3)
+    # page = request.GET.get('page')
+    # products_of_category_list = paginator.get_page(page)
     context = {
         'category': category,
         'products_of_category': products_of_category,
@@ -90,6 +94,7 @@ def cart_view(request):
         cart_id = request.session['cart_id']
         cart = Cart.objects.get(id=cart_id)
         request.session['total'] = cart.items.count()
+
     except:
         cart = Cart()
         cart.save()
@@ -101,6 +106,7 @@ def cart_view(request):
         'cart': cart,
         'categories': categories
     }
+
     return render(request, 'cart.html', context)
 
 
@@ -302,14 +308,14 @@ def login_view(request):
     }
     return render(request, 'login.html', context)
 
+
 def notify_view(request):
-    #data=str(request.readline()).split('=')[2]
     data = unquote(str(request)).split('=')
     email = data[2]
     email = email[:-2]
     product_slug = data[1]
     product_slug = product_slug.split('&')[0]
     notification = MiddlwareNotification()
-    notification.subscribe(product_slug,email)
+    notification.subscribe(product_slug, email)
 
     return HttpResponseRedirect(reverse('base'))

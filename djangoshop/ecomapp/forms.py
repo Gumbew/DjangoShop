@@ -1,6 +1,6 @@
 from django import forms
-from django.utils import timezone
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 
 class LoginForm(forms.Form):
@@ -81,4 +81,3 @@ class OrderForm(forms.Form):
         self.fields['comments'].label = 'Comments'
         self.fields['date'].label = 'Date'
         self.fields['date'].help_text = 'Delivery date'
-

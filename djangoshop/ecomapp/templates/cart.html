@@ -1,51 +1,92 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    <h3 class="text-center">Your cart</h3>
-    <br>
-
     <h3 class="empty-cart"></h3>
     {% if cart.items.count > 0 %}
-        <div class="item-cart">
-            <table class="table">
-                <tr>
-                    <td class="text-center"><strong>Item</strong></td>
-                    <td class="text-center"><strong>Qty</strong></td>
-                    <td class="text-center"><strong>Price</strong></td>
-                    <td class="text-center"><strong></strong></td>
-                </tr>
-                {% for item in cart.items.all %}
-                    <tr class="cart-item-{{ item.product.id }}">
-                        <td class="text-center">{{ item.product.title }}</td>
-                        <td class="text-center">
-                            <form action='' method='GET'>
-                                <input type='number' name='qty' class='cart-item-qty' data-id='{{ item.id }}'
-                                       value='{{ item.qty }}' min='1' style='width: 50px;'>
 
-                            </form>
-                        </td>
-                        <td class='text-center' id='cart-item-total-{{ item.id }}'>{{ item.item_total }} $</td>
-                        <td class="text-center"><a href="{% url 'remove_from_cart' %}" class="remove_from_cart"
-                                                   data-slug='{{ item.product.slug }}' data-id='{{ item.product.id }}'>
+        <style>
+            .row {
+                padding-top: 0.5%;
+                padding-bottom: 0.5%;
+            }
+        </style>
+        <div class="row">
+            <div class="col-lg-3 text-center">
+                <strong>Item</strong>
+            </div>
+            <div class="col-lg-3 text-center">
+                <strong>Qty</strong>
+            </div>
+            <div class="col-lg-3 text-center">
+                <strong>Price</strong>
+            </div>
+            <div class="col-lg-3 text-center">
+                <strong></strong>
+            </div>
+        </div>
+        <br>
+
+
+        {% for item in cart.items.all %}
+            <div class="cart-item-{{ item.product.id }}">
+                <div class="row">
+
+                    <div class="col-lg-3 text-center">
+                        {{ item.product.title }}
+                    </div>
+                    <div class="col-lg-3 text-center">
+                        <form action='' method='GET'>
+                            <input type='number' name='qty' class='cart-item-qty' data-id='{{ item.id }}'
+                                   value='{{ item.qty }}' min='1' style='width: 50px;'>
+
+                        </form>
+                    </div>
+                    <div class="col-lg-3 text-center" id='cart-item-total-{{ item.id }}'>{{ item.item_total }} $
+                    </div>
+                    <div class="col-lg-3 text-center">
+                        <a href="{% url 'remove_from_cart' %}" class="remove_from_cart"
+                           data-slug='{{ item.product.slug }}'
+                           data-id='{{ item.product.id }}'>
                             <button class="btn btn-dark">Remove from cart</button>
-                        </a></td>
-                    </tr>
-                {% endfor %}
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td class="text-center"><strong>Total:</strong></td>
-                    <td class="text-center" id="cart-total-price"><strong>{{ cart.cart_total }}$</strong></td>
-                </tr>
-            </table>
-            <br>
-            <div class="center">
+                        </a>
+                    </div>
+                    {#                        class="cart-item-{{ item.product.id }}"#}
+
+                </div>
+            </div>
+        {% endfor %}
+
+        <div class="row">
+            <div class="col-lg-3 text-center">
+
+            </div>
+            <div class="col-lg-3 text-center">
+
+            </div>
+            <div class="col-lg-3 text-center">
+                <strong>Total:</strong>
+            </div>
+            <div class="col-lg-3 text-center" id="cart-total-price">
+                <strong>{{ cart.cart_total }}$</strong>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 text-center">
+
+            </div>
+            <div class="col-lg-3 text-center">
+
+            </div>
+            <div class="col-lg-3 text-center">
+
+            </div>
+            <div class="col-lg-3 text-center" id="cart-total-price">
                 <a href="{% url 'checkout' %}" class="pull-right">
                     <button class="btn btn-info">Pre order</button>
                 </a>
             </div>
-
         </div>
+
     {% else %}
         <h3 class="text-center">Your cart is empty ;(</h3>
     {% endif %}

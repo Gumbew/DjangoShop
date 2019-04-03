@@ -1,7 +1,7 @@
-from django.urls import path, include, re_path, reverse_lazy
-from django.views.generic import TemplateView
-from django.contrib.auth.views import LogoutView
 from django.conf.urls import url
+from django.contrib.auth.views import LogoutView
+from django.views.generic import TemplateView
+
 from ecomapp.views import (
     base_view,
     category_view,
@@ -34,7 +34,7 @@ urlpatterns = [
     url(r'^registration/$', registration_view, name='registration'),
     url(r'^login/$', login_view, name='login'),
     url(r'^logout/$', LogoutView.as_view(next_page='base'), name='logout'),
-    url(r'^notify/$',notify_view, name='notify'),
+    url(r'^notify/$', notify_view, name='notify'),
     url(r'^$', base_view, name='base')
 
 ]
