@@ -62,29 +62,28 @@
 
             <div class="col-4 mx-auto" id="pg">
                 <div class="pagination ">
-                    {% if products.has_previous %}
+                    {% if products_of_category.has_previous %}
 
                         <li class="page-item"><a class="page-link" href="?page=1"><<</a></li>
                         <li class="page-item"><a class="page-link"
-                                                 href="?page={{ products.previous_page_number }}"><</a></li>
+                                                 href="?page={{ products_of_category.previous_page_number }}"><</a></li>
 
                     {% endif %}
-                    {% for num in products.paginator.page_range %}
-                        {% if products.number == num %}
+                    {% for num in products_of_category.paginator.page_range %}
+                        {% if products_of_category.number == num %}
                             <li class="page-item"><a class="page-link" href="?page={{ num }}"><strong>{{ num }}</strong></a>
                             </li>
-                        {% elif num > products.number|add:'-3' and num < products.number|add:'3' %}
+                        {% elif num > products_of_category.number|add:'-3' and num < products_of_category.number|add:'3' %}
                             <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
                         {% endif %}
                     {% endfor %}
-                    {% if products.has_next %}
-                        <li class="page-item"><a class="page-link" href="?page={{ products.next_page_number }}">></a>
+                    {% if products_of_category.has_next %}
+                        <li class="page-item"><a class="page-link" href="?page={{ products_of_category.next_page_number }}">></a>
                         </li>
                         <li class="page-item"><a class="page-link"
-                                                 href="?page={{ products.paginator.num_pages }}">>></a>
+                                                 href="?page={{ products_of_category.paginator.num_pages }}">>></a>
                         </li>
                     {% endif %}
-
                 </div>
             </div>
         </div>

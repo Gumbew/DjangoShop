@@ -29,14 +29,11 @@ def base_view(request):
     paginator = Paginator(products, 3)
     page = request.GET.get('page')
     products_list = paginator.get_page(page)
-    print(products_list)
     context = {
         'categories': categories,
         'products': products_list,
         'cart': cart
     }
-    print("BASE VIEW")
-    print(request)
     return render(request, 'base.html', context)
 
 
@@ -75,14 +72,14 @@ def category_view(request, category_slug):
         cart = Cart.objects.get(id=cart_id)
     categories = Category.objects.all()
     category = Category.objects.get(slug=category_slug)
-    price_filter_type = request.GET.get('price_filter_type')
+    # price_filter_type = request.GET.get('price_filter_type')
     products_of_category = Product.objects.filter(category=category)
-    # paginator = Paginator(products_of_category, 3)
-    # page = request.GET.get('page')
-    # products_of_category_list = paginator.get_page(page)
+    paginator = Paginator(products_of_category, 3)
+    page = request.GET.get('page')
+    products_list = paginator.get_page(page)
     context = {
         'category': category,
-        'products_of_category': products_of_category,
+        'products_of_category': products_list,
         'cart': cart,
         'categories': categories
     }
