@@ -1,2 +1,4 @@
-# rider files
 .idea/
+venv/
+.env
+djangoshop/__pycache___/
